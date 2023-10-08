@@ -28,7 +28,7 @@
 :config
     (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
     (electric-indent-mode nil)
-    (my-set-indent 4)
+    (my-set-indent 2) ; 4
     (setq-default indent-tabs-mode nil)
 )
 

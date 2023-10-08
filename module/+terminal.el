@@ -45,7 +45,7 @@
 
 (use-package shell-pop
 :custom (shell-pop-shell-type '("term" "vterm" (lambda () (vterm) )))
-        (shell-pop-term-shell "/bin/zsh")
+        (shell-pop-term-shell "/usr/bin/zsh")
         (shell-pop-full-span t)
 :general (leader "ut"'shell-pop)
 :init    (global-set-key (kbd "<C-t>") 'shell-pop)

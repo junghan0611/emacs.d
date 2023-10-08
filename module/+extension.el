@@ -12,7 +12,8 @@
 (use-package dashboard
     :custom (
         (dashboard-banner-logo-title "Happy Hacking")
-        (dashboard-startup-banner "~/.emacs.d/image/emacs_icon.png") ;banner image change
+        ;; (dashboard-startup-banner "~/.emacs.d/image/emacs_icon.png") ;banner image change
+        (dashboard-startup-banner 'logo)
         ;; (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
         (dashboard-set-heading-icons t)
         (dashboard-set-file-icons t)

@@ -48,6 +48,7 @@
 
 (elpaca-wait)
 
+
 ;; (eval-when-compile
 ;;     ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/straight/build/use-package"))
 ;;     (require 'use-package))
@@ -77,64 +78,75 @@
     :config (asdf-enable)
     )
 
-(setq user-full-name "InJae Lee")
-(setq user-mail-address "8687lee@gmail.com")
+;; (setq user-full-name "InJae Lee")
+;; (setq user-mail-address "8687lee@gmail.com")
 
 ;; custom lisp library
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/"))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/"))
+(dolist (dir '("lisp"))
+  (push (expand-file-name dir user-emacs-directory) load-path))
 
-(setq-default custom-file "~/.emacs.d/custom-variable.el")
+(setq module-directory (concat user-emacs-directory "module/"))
+
+;; User-Configuration
+;; (load (expand-file-name "per-machine.el" user-emacs-directory))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/private/"))
+(defvar private-config-file (concat user-emacs-directory "per-machine.el"))
+(when
+    (file-exists-p private-config-file)
+    (load-file private-config-file))
+
+(setq-default custom-file (concat user-emacs-directory "emacs-custom.el"))
+;; (setq-default custom-file "~/.emacs.d/custom-variable.el")
 (when (file-exists-p custom-file) (load-file custom-file))
 
-(use-package +lisp-util :elpaca nil :load-path "~/.emacs.d/module/")
+(use-package +lisp-util :elpaca nil :load-path module-directory)
 
 (elpaca-wait)
 
 (use-package module-util :elpaca nil :after (dash f s asdf)
     :config
     ;; Emacs 기본설정
-    (load-modules-with-list "~/.emacs.d/module/"
+    (load-modules-with-list module-directory ;; "~/.emacs.d/module/"
         '( ;; emacs modules
             emacs font evil
             git grep-util extension
             project-manage completion
-            window   buffer  ui
+            window buffer ui
             org terminal edit
             flycheck search
             multi-mode util
             run-command
             ))
     ;; programming 설정
-    (load-modules-with-list "~/.emacs.d/module/prog/"
+    (load-modules-with-list (concat module-directory "prog/") ;; "~/.emacs.d/module/prog/"
         '( ;; programming modules
               tree-sitter lsp snippet
               prog-search doc ssh
               coverage copilot tools
             ;; language support
-              cpp lisp csharp
-              rust haskell python
-              flutter web ruby
-              jvm  go  nix lua
-              config-file docker
+              lisp
+              python
+              web
+              ;; cpp  csharp
+              ;; rust haskell
+              ;; flutter ruby
+              ;; jvm  go  nix lua
+              ;; docker
+              config-file
               formatting
              ))
     )
 
-;; 개인 설정
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/private/"))
-(defvar private-config-file "~/.emacs.d/private/token.el")
-(when
-    (file-exists-p private-config-file)
-    (load-file private-config-file))
-
-(use-package filenotify :elpaca nil :after (exec-path-from-shell org)
-    :ensure-system-package (watchexec . "cargo install watchexec-cli")
-    :preface
-    (defvar env-org-file (expand-file-name "~/.emacs.d/env.org"))
-    (defun update-env-org-file (event)
-        (funcall-interactively 'org-babel-tangle-file env-org-file))
-    :config
-    (file-notify-add-watch env-org-file
-        '(change attribute-change) 'update-env-org-file)
-    )
+;; (use-package filenotify :elpaca nil :after (exec-path-from-shell org)
+;;     :ensure-system-package (watchexec . "cargo install watchexec-cli")
+;;     :preface
+;;     (defvar env-org-file (concat user-emacs-directory "env.org"))
+;;       ;; (expand-file-name "~/.emacs.d/env.org"))
+;;     (defun update-env-org-file (event)
+;;         (funcall-interactively 'org-babel-tangle-file env-org-file))
+;;     :config
+;;     (file-notify-add-watch env-org-file
+;;         '(change attribute-change) 'update-env-org-file)
+;;     )
 ;;; init.el ends here

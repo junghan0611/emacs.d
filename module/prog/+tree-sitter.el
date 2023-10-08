@@ -8,7 +8,6 @@
          (tree-sitter-after-on . tree-sitter-hl-mode))
 )
 
-;; 
 (use-package tree-sitter-langs :after tree-sitter)
 (use-package tree-sitter-indent :after tree-sitter :disabled
   :hook (tree-sitter-after-on . tree-sitter-indent-mode)

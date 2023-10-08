@@ -18,6 +18,21 @@
     (evil-mode)
     (evil-ex-define-cmd "k" 'kill-this-buffer)
     (fset 'evil-visual-update-x-selection 'ignore)
+
+;; 입력 모드에서만 한영 변환 가능!
+;; (defun my/turn-off-input-method (&rest _)
+;;   (if current-input-method
+;;       (deactivate-input-method)))
+
+;; (advice-add 'evil-normal-state :before #'my/turn-off-input-method)
+;; (mapc (lambda (mode)
+;;         (let ((keymap (intern (format "evil-%s-state-map" mode))))
+;;           (define-key (symbol-value keymap) [?\S- ]
+;;                       #'(lambda () (interactive)
+;;                           (message
+;;                            (format "Input method is disabled in %s state." evil-state))))))
+;;       '(motion normal visual))
+
 )
 
 (elpaca-wait)
@@ -50,7 +65,7 @@
               "ff"    '(find-file :wk "Find File")
               "fu"    '(browse-url :wk "Browse url")
               "ep"    '(list-processes :wk "Process")
-              "ef"    '((lambda ()(interactive) (find-file "~/.emacs.d/init.el")) :wk "configure file")
+              "ef"    '((lambda ()(interactive) (find-file (concat user-emacs-directory "init.el"))) :wk "configure file")
               "wf"    '(toggle-frame-fullscreen :wk "Full Screen")
               "wh"    '(shrink-window-horizontally :wk "Right size up")
               "wj"    '(enlarge-window :wk "Right size down")

@@ -53,7 +53,7 @@
     (global-auto-revert-mode)
 
     (setq auto-save-default nil)
-    
+
     ;; Enable recursive minibuffers
     (setq enable-recursive-minibuffers t)
 
@@ -64,6 +64,14 @@
     ;; native-comp
     (setq inhibit-automatic-native-compilation t)
     (setq native-compile-prune-cache t)
+
+    (setq-default tab-width 2)
+    (setq-default evil-shift-width tab-width)
+    (setq-default indent-tabs-mode nil)
+    (setq-default display-line-numbers-width-start t)
+
+    (setq-default fill-column 80)
+    (global-display-fill-column-indicator-mode)
 )
 
 (use-package ns-auto-titlebar

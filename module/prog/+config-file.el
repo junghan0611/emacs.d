@@ -15,14 +15,14 @@
        ("Pipfile\\'" . toml-mode))
 )
 
-(use-package cmake-mode
-:ensure-system-package (cmake-language-server . "pip3 install cmake-language-server")
-:commands cmake-mode
-:mode (("\\.cmake\\'"    . cmake-mode)
-       ("CMakeLists.txt" . cmake-mode))
-:hook (cmake-mode . (lambda () (require 'lsp-cmake) (lsp)))
-:init (setq cmake-tab-width 4)
-)
+;; (use-package cmake-mode
+;; :ensure-system-package (cmake-language-server . "pip3 install cmake-language-server")
+;; :commands cmake-mode
+;; :mode (("\\.cmake\\'"    . cmake-mode)
+;;        ("CMakeLists.txt" . cmake-mode))
+;; :hook (cmake-mode . (lambda () (require 'lsp-cmake) (lsp)))
+;; :init (setq cmake-tab-width 4)
+;; )
 
 (use-package markdown-mode
 :after poly-markdown
@@ -39,7 +39,7 @@
 :general (leader "hmr" 'gh-md-render-buffer)
 )
 
-(use-package powershell )
+;; (use-package powershell)
 
 (use-package json-mode
     :mode  (("\\.json\\'"       . json-mode)
@@ -80,27 +80,25 @@
 		'(jq "https://github.com/nverno/tree-sitter-jq" nil nil nil))
 	)
 
-
-
-(use-package terraform-mode :after exec-path-from-shell
-    :ensure-system-package (terraform-ls . "go install github.com/hashicorp/terraform-ls@latest")
-    :mode   ("\\.tf\\'" . terraform-mode)
-    :hook (terraform-mode . (lambda () (lsp)))
-    :custom
-    (terraform-indent-level 2)
-    (lsp-terraform-enable-logging t)
-    (lsp-terraform-ls-enable-show-reference t)
-    ;; (lsp-semantic-tokens-enable t)
-    ;; (lsp-semantic-tokens-honor-refresh-requests t)
-    (lsp-enable-links t)
-    (lsp-terraform-ls-prefill-required-fields t)
-    (lsp-terraform-ls-validate-on-save t)
-    ;; (lsp-register-client
-    ;;     (make-lsp-client
-    ;;         :new-connection (lsp-stdio-connection '("~/go/bin/terraform-ls" "serve"))
-    ;;         :major-modes    '(terraform-mode)
-    ;;         :server-id      'terraform-ls))
-    )
+;; (use-package terraform-mode :after exec-path-from-shell
+;;     :ensure-system-package (terraform-ls . "go install github.com/hashicorp/terraform-ls@latest")
+;;     :mode   ("\\.tf\\'" . terraform-mode)
+;;     :hook (terraform-mode . (lambda () (lsp)))
+;;     :custom
+;;     (terraform-indent-level 2)
+;;     (lsp-terraform-enable-logging t)
+;;     (lsp-terraform-ls-enable-show-reference t)
+;;     ;; (lsp-semantic-tokens-enable t)
+;;     ;; (lsp-semantic-tokens-honor-refresh-requests t)
+;;     (lsp-enable-links t)
+;;     (lsp-terraform-ls-prefill-required-fields t)
+;;     (lsp-terraform-ls-validate-on-save t)
+;;     ;; (lsp-register-client
+;;     ;;     (make-lsp-client
+;;     ;;         :new-connection (lsp-stdio-connection '("~/go/bin/terraform-ls" "serve"))
+;;     ;;         :major-modes    '(terraform-mode)
+;;     ;;         :server-id      'terraform-ls))
+;;     )
 ;;
 
 (use-package dotenv-mode

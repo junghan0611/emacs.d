@@ -13,8 +13,26 @@
                  "ol" 'org-store-link)
 ;:init   (setq org-directory          (expand-file-name     "~/Dropbox/org   "))
 ;        (setq org-default-notes-file (concat org-directory "/notes/notes.org"))
-:config (setq org-startup-indented   nil)
+:config
+(setq org-startup-indented   nil)
+;; TODO Fix
+(require 'org-agenda)
+
+;; The following setting is different from the document so that you
+;; can override the document org-agenda-files by setting your
+;; org-agenda-files in the variable org-user-agenda-files
+(if (boundp 'org-user-agenda-files)
+    (setq org-agenda-files org-user-agenda-files)
+  (setq org-agenda-files (quote ("~/org/inbox.org"))))
+
+(if (boundp 'org-user-agenda-diary-file)
+    (setq org-agenda-diary-file org-user-agenda-diary-file)
+  (setq org-agenda-diary-file "~/org/diary.org"))
+
+(setq diary-file org-agenda-diary-file)
+
 )
+
 
 (use-package org-superstar :after org
 :hook (org-mode . org-superstar-mode)
@@ -44,6 +62,8 @@
               (shell      . t)
               (C          . t)))
 )
+
+
 
 ;(use-package org-roam  :disabled
 ;:custom  (org-roam-dailies-directory "journals/")
@@ -108,7 +128,7 @@
 ;
 ;(use-package org-agenda :ensure nil :disabled
 ;:after org
-;:config (use-package evil-org  
+;:config (use-package evil-org
 ;        :after (org evil)
 ;        :init (add-hook 'org-mode-hook 'evil-org-mode)
 ;            (add-hook 'evil-org-mode-hook (lambda () (evil-org-set-key-theme)))
@@ -118,7 +138,7 @@
 ;        )
 ;)
 ;
-;(use-package org-pomodoro  
+;(use-package org-pomodoro
 ;:after org-agenda
 ;:custom
 ;    (org-pomodoro-ask-upon-killing t)
@@ -148,7 +168,7 @@
 ;(use-package calfw-gcal   :disabled
 ;:init (require 'calfw-gcal))
 ;
-;(use-package ob-restclient  
+;(use-package ob-restclient
 ;:after  (org restclient)
 ;:config (org-babel-do-load-languages 'org-babel-load-languages '((restclient . t)))
 ;)

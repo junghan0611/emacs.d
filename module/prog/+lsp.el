@@ -37,17 +37,17 @@
     ;(lsp-mode)
     ;corfu + lsp pause bugfix
     (advice-add #'lsp-completion-at-point :around #'cape-wrap-noninterruptible)
-    (setq lsp-go-use-gofumpt t)
-    (setq lsp-gopls-hover-kind "NoDocumentation")
-    (lsp-register-custom-settings
-        '(("gopls.staticcheck" t t)
-          ("gopls.allExperiments" t t)
-          ("gopls.usePlaceholders" t t)
-          ("rust-analyzer.cargo.runBuildScript" t t)
-          ;("pylsp.plugins.black.enabled" t t)
-          ;("pylsp.plugins.ruff.enabled" t t)
-          ;("pylsp.plugins.rope_autoimport.enabled" t t)
-          ))
+    ;; (setq lsp-go-use-gofumpt t)
+    ;; (setq lsp-gopls-hover-kind "NoDocumentation")
+    ;; (lsp-register-custom-settings
+    ;;     '(("gopls.staticcheck" t t)
+    ;;       ("gopls.allExperiments" t t)
+    ;;       ("gopls.usePlaceholders" t t)
+    ;;       ;; ("rust-analyzer.cargo.runBuildScript" t t)
+    ;;       ;("pylsp.plugins.black.enabled" t t)
+    ;;       ;("pylsp.plugins.ruff.enabled" t t)
+    ;;       ;("pylsp.plugins.rope_autoimport.enabled" t t)
+    ;;       ))
 
     (setq lsp-go-analyses
         '((unusedparams . t)
@@ -55,12 +55,12 @@
           (unusedwrite . t)
           (fieldalignment . t)
           (useany . t)))
-    (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-    (lsp-register-client
-        (make-lsp-client
-            :new-connection (lsp-stdio-connection '("rnix-lsp"))
-            :major-modes '(nix-mode)
-            :server-id 'nix))
+    ;; (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+    ;; (lsp-register-client
+    ;;     (make-lsp-client
+    ;;         :new-connection (lsp-stdio-connection '("rnix-lsp"))
+    ;;         :major-modes '(nix-mode)
+    ;;         :server-id 'nix))
    ;(setq lsp-go-gopls-placeholders nil)
 )
 

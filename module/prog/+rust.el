@@ -38,17 +38,17 @@
 ;         ;(add-hook 'rust-mode-hook (lambda () (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 ;)
 
-(use-package flycheck-rust :after (flycheck rustic)
-:hook (flycheck-mode . flycheck-rust-setup)
-)
+;; (use-package flycheck-rust :after (flycheck rustic)
+;; :hook (flycheck-mode . flycheck-rust-setup)
+;; )
 
-(use-package cargo :after  rustic-mode
-:hook (rustic-mode . cargo-minor-mode)
-:commands cargo-minor-mode
-:general (leader "hrb" 'cargo-process-build
-                 "hrr" 'cargo-process-run
-                 "hrt" 'cargo-process-test)
-)
+;; (use-package cargo :after  rustic-mode
+;; :hook (rustic-mode . cargo-minor-mode)
+;; :commands cargo-minor-mode
+;; :general (leader "hrb" 'cargo-process-build
+;;                  "hrr" 'cargo-process-run
+;;                  "hrt" 'cargo-process-test)
+;; )
 
 
 (provide '+rust)

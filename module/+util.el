@@ -22,10 +22,10 @@
 (use-package restart-emacs)
 
 (defun reload-emacs ()
-    ;; reload emacs config 
+    ;; reload emacs config
     (interactive)
-    (load-file (expand-file-name "~/.emacs.d/init.el"))
-)
+    (load-file (concat user-emacs-directory "init.el"))
+    )
 
 (defun new-buffer-save (name buffer-major-mode)
     (interactive)
@@ -102,7 +102,7 @@ All permutations equally likely."
     list)
 
 ;;; 키입력 보여주는 플러그인
-(use-package keypression 
+(use-package keypression
 :commands keypression-mode
 :custom (keypression-use-child-frame t)
         (keypression-fade-out-delay 1.0)
@@ -134,7 +134,7 @@ All permutations equally likely."
     :config (undohist-initialize))
 
 (use-package undo-fu-session :after undo-fu :disabled
-    :functions undo-fu-session-global-mode 
+    :functions undo-fu-session-global-mode
     :config (undo-fu-session-global-mode))
 
 (use-package vundo :after general
